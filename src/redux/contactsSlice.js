@@ -12,7 +12,7 @@ const contactsSlice = createSlice({
             },
             prepare(name, phone) {
                 return {
-                    payload: {
+                    payload: { 
                         name,
                         phone,
                         id: nanoid(),
@@ -23,6 +23,9 @@ const contactsSlice = createSlice({
         deleteContact(state, action) {
             const index = state.findIndex(task => task.id === action.payload);
             state.splice(index, 1);
+        },
+        filterContact(state, action) {
+            state.filter = action.payload;
         },
     },
 });

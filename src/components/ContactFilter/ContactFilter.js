@@ -1,23 +1,23 @@
-import { Button } from '../Button/Button';
+
+import { useDispatch } from 'react-redux';
+import { setStatusFilter } from "../../redux/filterSlice";
 
 export const ContactFilter = () => {
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const form = e.target;
-        form.reset();
+    const dispatch = useDispatch();
+
+    const onChange = (e) => {
+        dispatch(setStatusFilter(e.target.value))
     };
 
     return (
-        <form className="" onSubmit={handleSubmit}>
             <input
                 className=""
-                type="text"
-                name="text"
+                type="search"
+                name="filter"
+                onChange={onChange}
                 placeholder="Search..."
-            />
+            ></input>
             
-            <Button type="submit">Search</Button>
-        </form>
     );
 };

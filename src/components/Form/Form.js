@@ -1,7 +1,7 @@
 import css from './Form.module.css';
-import { Button } from "components/Button/Button";
+// import { Button } from "components/Button/Button";
 import { useDispatch } from "react-redux";
-import { addContact } from "redux/contactsSlice";
+import { addContact } from "../../redux/contactsSlice";
 
 export const Form = () => {
 
@@ -9,7 +9,9 @@ export const Form = () => {
   const handleSubmit = event => {
     event.preventDefault();
     const form = event.target;
-    dispatch(addContact(form.elements.name.value, form.elements.phone.value));
+    const name = form.elements.name.value;
+    const phone = form.elements.phone.value;
+    dispatch(addContact(name, phone));
     form.reset();
   };
   
@@ -19,7 +21,7 @@ export const Form = () => {
       <input className={css.input} id="nameContact" type="text" name="name" pattern="^[a-zA-Zа-яА-Я]*$" required placeholder="Name"></input>
       <label htmlFor='numberContact'>Phone number</label> 
       <input className={css.input} id="numberContact" type="tel" name="phone" pattern="\+?\d{1,4}?[ .\\-\\s]?\(?\d{1,3}?\)?[ .\\-\\s]?\d{1,4}[ .\\-\\s]?\d{1,4}[ .\\-\\s]?\d{1,9}" required placeholder="Number"></input>
-      <Button type="submit">Add contact</Button>
+      <button type="submit">Add contact</button>
     </form>
   )
 };
