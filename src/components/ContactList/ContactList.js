@@ -3,19 +3,23 @@ import { Contact } from 'components/Contact/Contact';
 import { useSelector } from "react-redux";
 import { getContacts, getFilter } from "../../redux/selectors";
 
-const getFilteredContacts = (contacts, filter) => {
+// const getFilteredContacts = (contacts, filter) => {
 
-    contacts.filter(contact => contact.name?.includes(filter));
-    return contacts;
-};
+//     contacts.filter(contact => contact.name?.includes(filter));
+//     return contacts;
+// };
 
 export const ContactList = () => { 
     const contacts = useSelector(getContacts);
     const filter = useSelector(getFilter);
-    const filteredContacts = getFilteredContacts(contacts, filter)
+    const filteredContacts = filter.filter
   return (
     <ul className={css.ul}>
-        {filteredContacts.map(contact => (
+          {contacts
+            .filter((contact) => 
+              contact.name.toLowerCase().includes(filteredContacts.toLowerCase()),
+              )
+            .map((contact) => (
             <li className={css.li} key={contact.id}>
                 <Contact contact={contact} />
             </li>))}
